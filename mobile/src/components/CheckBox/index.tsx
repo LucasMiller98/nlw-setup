@@ -6,6 +6,7 @@ import {
 import { Feather } from '@expo/vector-icons'
 import colors from "tailwindcss/colors";
 import { CheckBoxProps } from './types'
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 
 export function CheckBox({ isChecked = false, title, ...rest }: CheckBoxProps) {
   return(
@@ -16,7 +17,7 @@ export function CheckBox({ isChecked = false, title, ...rest }: CheckBoxProps) {
     >
       { isChecked ? (
 
-        <View 
+        <Animated.View 
           className="
             h-8 
             w-8
@@ -25,13 +26,15 @@ export function CheckBox({ isChecked = false, title, ...rest }: CheckBoxProps) {
             items-center 
             justify-center
           "
+          entering={ZoomIn}
+          exiting={ZoomOut}
         >
           <Feather 
             name="check"
             size={20} 
             color={colors.white}
           />
-        </View>
+        </Animated.View>
       ) : (
         <View className="h-8 w-8 bg-zinc-900 rounded-lg" />
       ) }

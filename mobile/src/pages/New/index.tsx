@@ -5,7 +5,7 @@ import {
   Text, 
   TextInput, 
   TouchableOpacity, 
-  Alert
+  ToastAndroid
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { BackButton } from '../../components/BackButton'
@@ -31,24 +31,23 @@ export function New() {
   const handleCreateNewHabits = async () => {
     try {
       if(!title.trim() || weekDays.length === 0) {
-        Alert.alert('Novo hábito', "Informe o nome do hábito e escolha a periodicidade.")
-      }
-
-      const userData = {
-        title,
-        weekDays
+        return ToastAndroid.showWithGravity("Informe o nome do hábito e escolha a periodicidade.", ToastAndroid.CENTER, ToastAndroid.LONG)
       }
       
-      await api.post('/habits', { userData })
+      await api.post('/habits', {
+        title,
+        weekDays
+      })
       
       setTitle('')
       setWeekDays([])
 
-      Alert.alert('Hábito', 'Novo hábito criado com sucesso!')
+      ToastAndroid.show('Novo hábito criado com sucesso!', ToastAndroid.TOP)
       
     } catch (error: any) {
-      console.error(error.message)
-      Alert.alert('Ops', 'Não foi possível')
+      console.error(error.name)
+      console.info(error.message)
+      ToastAndroid.show('Não foi possível.', ToastAndroid.CENTER)
     }
   }
   

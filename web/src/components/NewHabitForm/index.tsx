@@ -70,6 +70,11 @@ export function NewHabitForm() {
           bg-zinc-800 
           text-white 
           placeholder:text-zinc-400
+          focus:outline-none
+          focus:ring-2
+          focus:ring-violet-700
+          focus:ring-offset-2
+          focus:ring-offset-zinc-900
         "
         value={title}
         onChange={event => setTitle(event.target.value)}
@@ -89,7 +94,7 @@ export function NewHabitForm() {
             <Checkbox.Root 
               key={weekDay}
               checked={weekDays.includes(index)}
-              className='flex items-center gap-3 group'
+              className='flex items-center gap-3 group focus:outline-none'
               onCheckedChange={() => handleToggleWeekDay(index)}
             >
               <div className='
@@ -103,6 +108,11 @@ export function NewHabitForm() {
                   border-zinc-800
                   group-data-[state=checked]:bg-green-500
                   group-data-[state=checked]:border-green-500
+                  transition-colors
+                  group-focus:ring-2
+                  group-focus:ring-violet-700
+                  group-focus:ring-offset-2
+                  group-focus:ring-offset-background
                 '
               >
                 <Checkbox.Indicator>
@@ -139,6 +149,12 @@ export function NewHabitForm() {
           bg-green-600 
           justify-center 
           hover:bg-green-500
+          transition-colors
+          focus:outline-none
+          focus:ring-2
+          focus:ring-green-600
+          focus:ring-offset-2
+          focus:ring-offset-zinc-900
           "
         >
         <Check size={20} weight='bold' />
